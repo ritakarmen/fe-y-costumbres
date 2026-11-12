@@ -1,0 +1,75 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import InquiryForms from '../components/InquiryForms.astro';
+import { news, traditions, contactEmail } from '../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Fe y Raíces — Fe, cultura y comunidad" description="Noticias, espiritualidad, celebraciones y costumbres de Perú y del mundo, en un espacio de encuentro respetuoso.">
+  <SiteHeader current="inicio" />
+  <main id="contenido">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Un espacio para encontrarnos</div>
+          <h1>La fe que nos guía.<br /><em>Las raíces que nos unen.</em></h1>
+          <p class="hero-copy">Historias, noticias, costumbres y celebraciones que dan sentido a nuestra vida en comunidad. Un lugar para aprender, compartir y dialogar con respeto.</p>
+          <div class="hero-actions"><a class="button" href={`${base}actualidad/`}>Explorar actualidad <span aria-hidden="true">↗</span></a><a class="button secondary" href="#temas">Conocer los temas</a></div>
+          <div class="hero-note"><span class="tiny-avatars" aria-hidden="true"><span>✺</span><span>✝</span><span>☼</span></span><span>Tradiciones vivas, historias compartidas y caminos diversos.</span></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Ilustración abstracta de un sol y una cruz sobre un fondo verde">
+          <div class="sun-disc"></div><div class="sun-cross" aria-hidden="true">✝</div>
+          <div class="hero-art-copy"><div><strong>Fe que se vive</strong><span>Perú · Cultura · Esperanza</span></div><div class="hero-stamp">UN LUGAR<br />PARA TODOS</div></div>
+        </div>
+      </div>
+    </section>
+    <div class="marquee"><div class="container marquee-inner"><span><b>✦</b> Espiritualidad cotidiana</span><span><b>✦</b> Tradiciones del Perú</span><span><b>✦</b> Diálogo y respeto</span><span><b>✦</b> Fiestas que nos reúnen</span></div></div>
+
+    <section class="section news-section" id="actualidad">
+      <div class="container">
+        <div class="section-heading"><div><div class="section-label">Lo que está pasando</div><h2>Actualidad con mirada humana</h2></div><div><p>Noticias y relatos recientes sobre fe, comunidad y tradiciones. Consulta siempre la fuente original para ampliar la información.</p><a class="text-link" href={`${base}actualidad/`} style="margin-top:12px">Ver todas las noticias <span aria-hidden="true">→</span></a></div></div>
+        <div class="news-grid">
+          {news.slice(0, 3).map((item) => <article class="news-card">
+            <div class="card-meta"><span>{item.date}</span><span class="category-pill">{item.tag}</span></div>
+            <h3>{item.title}</h3><p>{item.summary}</p>
+            <div class="card-bottom"><span class="source">Fuente: {item.source}</span><a class="read-arrow" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer en ${item.source}`}>↗</a></div>
+          </article>)}
+        </div>
+        <p class="update-line">Selección editorial actualizada el 12 de noviembre de 2026. Las noticias enlazan a sus publicaciones originales.</p>
+      </div>
+    </section>
+
+    <section class="section" id="temas">
+      <div class="container">
+        <div class="section-heading"><div><div class="section-label">Ideas para explorar</div><h2>Temas que nos acompañan</h2></div><p>La fe puede vivirse en la oración, en la memoria, en el servicio y en las preguntas. Aquí hay espacio para distintos caminos.</p></div>
+        <div class="topics-grid">
+          <a class="topic-card" href={`${base}temas/#espiritualidad`}><span class="topic-symbol" aria-hidden="true">☼</span><span class="arrow" aria-hidden="true">↗</span><h3>Espiritualidad</h3><p>Prácticas, lecturas y momentos para cultivar interioridad y esperanza.</p></a>
+          <a class="topic-card" href={`${base}temas/#fe-y-vida`}><span class="topic-symbol" aria-hidden="true">♡</span><span class="arrow" aria-hidden="true">↗</span><h3>Fe y vida diaria</h3><p>Cómo la compasión, la gratitud y el cuidado se hacen acciones concretas.</p></a>
+          <a class="topic-card" href={`${base}temas/#dialogo`}><span class="topic-symbol" aria-hidden="true">◎</span><span class="arrow" aria-hidden="true">↗</span><h3>Diálogo y respeto</h3><p>Conocer distintas tradiciones religiosas y convivir desde la escucha.</p></a>
+          <a class="topic-card" href={`${base}temas/#familia`}><span class="topic-symbol" aria-hidden="true">✿</span><span class="arrow" aria-hidden="true">↗</span><h3>Familia y comunidad</h3><p>Rituales, recuerdos y celebraciones que pasan de una generación a otra.</p></a>
+        </div>
+        <div style="margin-top:22px"><a class="text-link" href={`${base}temas/`}>Visitar el espacio de temas <span aria-hidden="true">→</span></a></div>
+      </div>
+    </section>
+
+    <section class="section traditions-section" id="tradiciones">
+      <div class="container">
+        <div class="section-heading"><div><div class="section-label">Calendarios, lugares y memorias</div><h2>Celebraciones que cuentan quiénes somos</h2></div><div><p>Las fiestas pueden unir devoción, música, comida, danza y memoria local. Cada tradición merece ser contada con su propia voz.</p><a class="text-link" href={`${base}tradiciones/`} style="margin-top:12px">Explorar tradiciones <span aria-hidden="true">→</span></a></div></div>
+        <div class="tradition-grid">
+          {traditions.map((item) => <article class="tradition-card">
+            <div class="tradition-art" aria-hidden="true">{item.symbol}</div>
+            <div class="tradition-season">{item.season}</div><h3>{item.title}</h3><p>{item.text}</p>
+            <a class="text-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.label} <span aria-hidden="true">↗</span></a>
+          </article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band" id="acerca"><div class="container"><div class="quote-mark" aria-hidden="true">“</div><p>La tradición se mantiene viva cuando se comparte con amor, se escucha con respeto y se transmite con sentido.</p><span>Fe y Raíces · Un espacio abierto al diálogo</span></div></section>
+
+    <InquiryForms />
+    <section class="section" style="padding-top:0"><div class="container"><p class="update-line">Tu mensaje se dirige a <a class="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>. No se publica nada sin revisión y autorización.</p></div></section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

@@ -1,0 +1,65 @@
+---
+import { contactEmail } from '../data/content';
+---
+<section class="section community-section" id="consultas">
+  <div class="container">
+    <div class="section-heading">
+      <div><div class="section-label">Conversar también es parte del camino</div><h2>Tu voz tiene un lugar</h2></div>
+      <p>Envía una pregunta o comparte una reflexión. Los mensajes llegan al correo de contacto para responderte con calma.</p>
+    </div>
+    <div class="community-grid">
+      <form class="form-card" data-mailto-form data-kind="consulta" data-recipient={contactEmail}>
+        <span class="form-icon" aria-hidden="true">✉</span>
+        <h3>Haz una consulta</h3>
+        <p>Cuéntanos qué tema te gustaría conversar: fe, costumbres, una celebración o una pregunta personal.</p>
+        <div class="field-grid">
+          <div class="field"><label for="ask-name">Tu nombre</label><input id="ask-name" name="name" autocomplete="name" required placeholder="¿Cómo te llamas?" /></div>
+          <div class="field"><label for="ask-email">Tu correo</label><input id="ask-email" name="sender" type="email" autocomplete="email" required placeholder="nombre@correo.com" /></div>
+          <div class="field full"><label for="ask-topic">Tema</label><select id="ask-topic" name="topic"><option>Fe y espiritualidad</option><option>Costumbres y celebraciones</option><option>Historia y cultura</option><option>Otra consulta</option></select></div>
+          <div class="field full"><label for="ask-message">Tu mensaje</label><textarea id="ask-message" name="message" required minlength="8" placeholder="Escribe tu pregunta o inquietud…"></textarea></div>
+          <div class="field full"><label class="consent"><input type="checkbox" name="consent" required /><span>Autorizo usar mi correo únicamente para responder esta consulta.</span></label></div>
+        </div>
+        <button class="button form-submit" type="submit">Preparar correo <span aria-hidden="true">↗</span></button>
+        <p class="form-status" aria-live="polite"></p>
+        <div class="form-help">Se abrirá tu aplicación de correo con el mensaje listo. Revísalo y pulsa <b>Enviar</b> para que nos llegue.</div>
+      </form>
+      <form class="form-card featured" data-mailto-form data-kind="comentario" data-recipient={contactEmail}>
+        <span class="form-icon" aria-hidden="true">✧</span>
+        <h3>Deja un comentario</h3>
+        <p>Comparte una idea, una tradición de tu familia o una reflexión que pueda acompañar a otras personas.</p>
+        <div class="field-grid">
+          <div class="field"><label for="comment-name">Nombre para mostrar</label><input id="comment-name" name="name" autocomplete="name" required placeholder="Tu nombre o seudónimo" /></div>
+          <div class="field"><label for="comment-email">Tu correo</label><input id="comment-email" name="sender" type="email" autocomplete="email" required placeholder="nombre@correo.com" /></div>
+          <div class="field full"><label for="comment-message">Tu comentario</label><textarea id="comment-message" name="message" required minlength="8" placeholder="Escribe tu comentario con respeto…"></textarea></div>
+          <div class="field full"><label class="consent"><input type="checkbox" name="consent" required /><span>Acepto que mi comentario y el nombre elegido puedan publicarse después de revisión.</span></label></div>
+        </div>
+        <button class="button form-submit" type="submit">Enviar para revisión <span aria-hidden="true">↗</span></button>
+        <p class="form-status" aria-live="polite"></p>
+        <div class="form-help">Los comentarios no aparecen automáticamente. Se revisan antes de cualquier publicación. Al enviar, se abrirá un borrador en tu correo.</div>
+      </form>
+    </div>
+    <div class="policy-callout">También puedes escribir directamente a <a class="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>. Los datos del formulario se compartirán con ese correo solo cuando pulses Enviar en tu aplicación de correo.</div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-mailto-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const recipient = form.dataset.recipient || '';
+      const kind = form.dataset.kind === 'comentario' ? 'Comentario para revisión' : 'Consulta desde Fe y Raíces';
+      const subject = `${kind} — ${String(data.get('topic') || 'Comunidad')}`;
+      const body = [
+        `Nombre: ${data.get('name')}`,
+        `Correo para responder: ${data.get('sender')}`,
+        `Tema: ${data.get('topic') || 'Comentario'}`,
+        '',
+        String(data.get('message') || '')
+      ].join('\n');
+      const status = form.querySelector<HTMLElement>('.form-status');
+      if (status) status.textContent = 'Se abrirá tu correo. Revisa el mensaje y pulsa Enviar para compartirlo.';
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { traditions } from '../data/content';
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Tradiciones y fiestas — Fe y Raíces" description="Fiestas religiosas y costumbres del Perú: historia, fe, cultura y comunidad.">
+  <SiteHeader current="tradiciones" />
+  <main id="contenido" class="page-main">
+    <div class="container">
+      <div class="page-intro"><div class="eyebrow">Fe, memoria y territorio</div><h1>Tradiciones que siguen vivas</h1><p>Las fiestas religiosas son también expresiones de historia, arte, música, cocina y organización comunitaria. Conoce algunas celebraciones del Perú y consulta las fuentes para profundizar.</p></div>
+      <div class="page-grid">
+        {traditions.map((item) => <article class="news-card tradition-detail">
+          <div class={`tradition-art ${item.tone}`} aria-hidden="true">{item.symbol}</div>
+          <div class="tradition-season">{item.season}</div><h3>{item.title}</h3><p>{item.text}</p>
+          <div class="card-bottom"><span class="source">{item.label}</span><a class="text-link" href={item.url} target="_blank" rel="noopener noreferrer">Conocer la fuente ↗</a></div>
+        </article>)}
+      </div>
+      <div class="feature-note"><b>Una mirada respetuosa:</b> cada celebración puede tener significados distintos para sus participantes. Esta página ofrece una introducción y no pretende hablar en nombre de todas las comunidades.</div>
+      <div style="margin-top:25px"><a class="button" href={`${base}calendario/`}>Ver calendario de celebraciones <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </main>
+  <SiteFooter />
+</SiteLayout>

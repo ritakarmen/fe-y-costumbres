@@ -1,0 +1,23 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Temas de fe — Fe y Raíces" description="Lecturas sobre espiritualidad, vida cotidiana, diálogo religioso, familia y comunidad.">
+  <SiteHeader current="temas" />
+  <main id="contenido" class="page-main">
+    <div class="container">
+      <div class="page-intro"><div class="eyebrow">Preguntar, aprender, compartir</div><h1>Temas de fe y vida</h1><p>La espiritualidad se vive de muchas maneras. Este espacio reúne ideas introductorias para acercarse a distintas prácticas y relatos con curiosidad y respeto.</p></div>
+      <div class="topic-article-list">
+        <article class="topic-article" id="espiritualidad"><span class="topic-symbol" aria-hidden="true">☼</span><div><div class="section-label">Interioridad y práctica</div><h2>Espiritualidad para la vida cotidiana</h2><p>Orar, meditar, leer textos sagrados, agradecer o guardar silencio son prácticas que distintas personas y tradiciones viven de formas propias. Puedes comenzar con un momento breve de pausa y una pregunta sincera: ¿qué quiero cuidar hoy?</p><span class="reading-note">Una invitación: elige un gesto sencillo de calma o gratitud para esta semana.</span></div></article>
+        <article class="topic-article" id="fe-y-vida"><span class="topic-symbol" aria-hidden="true">♡</span><div><div class="section-label">Valores en acción</div><h2>Fe que se convierte en cuidado</h2><p>En muchas tradiciones, la compasión, la justicia y el servicio ocupan un lugar central. Acompañar a una persona, escuchar sin juzgar o colaborar con una iniciativa comunitaria son maneras concretas de convertir las convicciones en cuidado.</p><span class="reading-note">Las creencias son personales; el respeto por la dignidad de cada persona nos reúne.</span></div></article>
+        <article class="topic-article" id="dialogo"><span class="topic-symbol" aria-hidden="true">◎</span><div><div class="section-label">Convivencia y diversidad</div><h2>Conocer otras religiones desde la escucha</h2><p>El Perú reúne comunidades católicas, evangélicas, judías, musulmanas, budistas, tradiciones espirituales indígenas y personas no religiosas. Conocer sus historias y preguntar con respeto ayuda a construir una convivencia donde cada persona pueda expresarse sin ser discriminada.</p><span class="reading-note">Dialogar no exige pensar igual: exige escuchar y tratarse con dignidad.</span></div></article>
+        <article class="topic-article" id="familia"><span class="topic-symbol" aria-hidden="true">✿</span><div><div class="section-label">Memoria y pertenencia</div><h2>Familia, costumbres y comunidad</h2><p>Una receta, una canción, una procesión o una reunión anual pueden guardar recuerdos y transmitir pertenencia. Las costumbres cambian con cada generación; compartir su historia ayuda a conservar lo valioso y abrir espacio a nuevas voces.</p><span class="reading-note">Tu familia también tiene una historia que merece ser escuchada.</span></div></article>
+      </div>
+      <div class="feature-note">Estos contenidos son informativos y de diálogo. No reemplazan el acompañamiento de líderes religiosos, consejeros o profesionales cuando una situación lo requiere.</div>
+      <div style="margin-top:25px"><a class="button" href={`${base}#consultas`}>Conversar sobre un tema <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </main>
+  <SiteFooter />
+</SiteLayout>

@@ -1,0 +1,20 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <a class="brand" href={base} aria-label="Fe y Raíces, volver al inicio">
+        <span class="brand-mark" aria-hidden="true">✺</span>
+        <span class="brand-words"><span class="brand-name">Fe y Raíces</span><span class="brand-tagline">Cultura · Comunidad · Esperanza</span></span>
+      </a>
+      <nav class="footer-links" aria-label="Enlaces del pie de página">
+        <a href={`${base}actualidad/`}>Actualidad</a>
+        <a href={`${base}temas/`}>Temas de fe</a>
+        <a href={`${base}tradiciones/`}>Tradiciones</a>
+        <a href={`mailto:vidasanacelestial@gmail.com`}>Escríbenos</a>
+      </nav>
+    </div>
+    <div class="footer-bottom"><span>Un espacio para aprender, recordar y encontrarnos con respeto.</span><span>© {new Date().getFullYear()} Fe y Raíces</span></div>
+  </div>
+</footer>

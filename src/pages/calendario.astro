@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+const base = import.meta.env.BASE_URL;
+---
+<SiteLayout title="Calendario de celebraciones — Fe y Raíces" description="Fechas y temporadas para conocer celebraciones religiosas y culturales del Perú.">
+  <SiteHeader current="calendario" />
+  <main id="contenido" class="page-main">
+    <div class="container">
+      <div class="page-intro"><div class="eyebrow">Fechas para recordar y compartir</div><h1>Calendario de celebraciones</h1><p>Una guía inicial para ubicar algunas fechas religiosas y culturales. Las celebraciones locales pueden cambiar de programa cada año: confirma siempre los detalles con sus organizadores.</p></div>
+      <div class="calendar-list">
+        <article class="calendar-item"><div class="calendar-date">15 nov<br />2026</div><div><h3>Jornada Mundial de los Pobres</h3><p>Una invitación a acercarse a las personas vulnerables con solidaridad y acciones concretas. En 2026 se celebra bajo el lema “El Señor es el refugio de los pobres”.</p></div><span class="calendar-label">Solidaridad</span></article>
+        <article class="calendar-item"><div class="calendar-date">29 nov<br />2026</div><div><h3>Primer domingo de Adviento</h3><p>Comienza este tiempo de preparación y esperanza en el calendario cristiano occidental. Sus prácticas y celebraciones varían entre comunidades.</p></div><span class="calendar-label">Tiempo litúrgico</span></article>
+        <article class="calendar-item"><div class="calendar-date">Diciembre<br />2026</div><div><h3>Navidad</h3><p>El 25 de diciembre, muchas comunidades cristianas conmemoran el nacimiento de Jesús con celebraciones religiosas, encuentros familiares y costumbres locales.</p></div><span class="calendar-label">Celebración cristiana</span></article>
+        <article class="calendar-item"><div class="calendar-date">Enero–febrero<br />2027</div><div><h3>Virgen de la Candelaria · Puno</h3><p>Una de las grandes celebraciones del altiplano, con procesiones, música, danzas y expresiones culturales reconocidas por la UNESCO.</p></div><span class="calendar-label">Patrimonio vivo</span></article>
+        <article class="calendar-item"><div class="calendar-date">1–2 nov<br />cada año</div><div><h3>Todos los Santos y memoria de los difuntos</h3><p>En diversas regiones del Perú, las familias recuerdan a sus seres queridos con visitas, flores, comidas y tradiciones propias.</p></div><span class="calendar-label">Memoria familiar</span></article>
+      </div>
+      <div class="feature-note">Las fechas de fiestas patronales, procesiones y actividades públicas pueden variar por ciudad o comunidad. Este calendario es orientativo, no una agenda oficial.</div>
+      <div class="policy-callout">Fuentes: <a href="https://www.vaticannews.va/es/papa/news/2026-11/dia-mundial-de-los-pobres-decima-edicion-el-15-de-noviembre.html" target="_blank" rel="noopener noreferrer">Vatican News — Jornada Mundial de los Pobres</a> · <a href="https://www.usccb.org/resources/2026cal.pdf" target="_blank" rel="noopener noreferrer">Calendario litúrgico 2026</a> · <a href="https://ich.unesco.org/es/RL/la-fiesta-de-la-virgen-de-la-candelaria-en-puno-00956" target="_blank" rel="noopener noreferrer">UNESCO — Candelaria de Puno</a>.</div>
+      <div style="margin-top:25px"><a class="button" href={`${base}#consultas`}>Compartir una fecha local <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </main>
+  <SiteFooter />
+</SiteLayout>
