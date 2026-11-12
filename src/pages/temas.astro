@@ -2,7 +2,7 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <SiteLayout title="Temas de fe — Fe y Raíces" description="Lecturas sobre espiritualidad, vida cotidiana, diálogo religioso, familia y comunidad.">
   <SiteHeader current="temas" />
