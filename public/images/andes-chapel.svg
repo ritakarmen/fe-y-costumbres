@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="800" viewBox="0 0 720 800" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="800" gradientUnits="userSpaceOnUse"><stop stop-color="#c3e4ef"/><stop offset="1" stop-color="#edf3e8"/></linearGradient>
+    <linearGradient id="mountain" x1="200" y1="260" x2="510" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#8fb5b6"/><stop offset="1" stop-color="#557b87"/></linearGradient>
+    <linearGradient id="wall" x1="260" y1="370" x2="430" y2="660" gradientUnits="userSpaceOnUse"><stop stop-color="#fff7e6"/><stop offset="1" stop-color="#e8dcc3"/></linearGradient>
+    <pattern id="grain" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#254c60" opacity=".09"/><circle cx="5" cy="4" r=".5" fill="#fff" opacity=".25"/></pattern>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h720v800H0z"/>
+  <circle cx="486" cy="206" r="94" fill="#fff7d8"/>
+  <circle cx="486" cy="206" r="117" stroke="#fff7d8" stroke-opacity=".35"/>
+  <g stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".65"><path d="M62 178h160m-126 14h90m367-79h105m-61 15h79"/></g>
+  <path d="M-70 480 107 273l96 102 91-170 150 196 88-110 246 236v273H-70Z" fill="#afc9c8"/>
+  <path d="m202 375 92-170 150 196-105-65-38-66-44 88Z" fill="#deebe0"/>
+  <path d="M-50 552 90 382l94 72 153-130 173 191 94-164 171 226v223H-50Z" fill="url(#mountain)"/>
+  <path d="m337 324 173 191-145-87-66-4-115 30Z" fill="#70969c"/>
+  <path d="m604 351 171 226-132-75-56-40-77 53Z" fill="#a1b7ae"/>
+  <path d="M0 594c123-67 192-45 306-22 138 28 269-51 414-19v247H0Z" fill="#b3c5ad"/>
+  <path d="M0 654c135-62 232-17 337-37 144-29 235-20 383 45v138H0Z" fill="#92a58a"/>
+  <path d="M0 755c159-70 241-28 361-63 129-38 227-3 359 28v80H0Z" fill="#718d80"/>
+  <path d="M334 613c-51 48-36 67 28 95s104 52 92 92h163c-27-86-130-95-193-130-38-21-43-37-33-57Z" fill="#dbd3b5"/>
+  <ellipse cx="353" cy="628" rx="172" ry="24" fill="#476b6b" opacity=".18"/>
+  <!-- An imagined Andean chapel. -->
+  <path d="m295 445 104-94 104 94v166H295Z" fill="#c7baa0"/>
+  <path d="m399 351 104 94h-42l-84-76Z" fill="#a47561"/>
+  <path d="m251 448 117-104 110 104v175H251Z" fill="url(#wall)"/>
+  <path d="m240 451 128-115 121 115-14 10-107-96-115 96Z" fill="#b5856f"/>
+  <path d="m265 454 103-92 96 92" stroke="#fff8e9" stroke-width="5"/>
+  <path d="M339 623v-77a28 28 0 0 1 56 0v77Z" fill="#b8a283"/>
+  <path d="M348 623v-74a19 19 0 0 1 38 0v74Z" fill="#345462"/>
+  <path d="M367 533v90m-17-31h34" stroke="#678083" stroke-width="2"/>
+  <circle cx="368" cy="436" r="24" fill="#cbbba0"/>
+  <circle cx="368" cy="436" r="17" fill="#658f98"/>
+  <path d="M368 419v34m-17-17h34" stroke="#eee5cf" stroke-width="3"/>
+  <path d="M278 523h22v40h-22zm152 0h22v40h-22z" fill="#7f9c9c"/>
+  <path d="M284 523v40m152-40v40" stroke="#f8edd5" stroke-width="2"/>
+  <path d="M218 345h68v278h-68Z" fill="#eee5ce"/>
+  <path d="M286 345h25v278h-25Z" fill="#c9bca2"/>
+  <path d="M212 342h81v13h-81zm-2 83h85v12h-85z" fill="#d8c6a6"/>
+  <path d="M224 342v-22a28 28 0 0 1 56 0v22Z" fill="#b5856f"/>
+  <path d="M252 292v-30m-11 11h22" stroke="#557277" stroke-width="5" stroke-linecap="round"/>
+  <path d="M233 411v-32a19 19 0 0 1 38 0v32Z" fill="#54727b"/>
+  <path d="M244 398v-12a8 8 0 0 1 16 0v12l5 5h-26Z" fill="#d4b986"/>
+  <path d="M252 403v6" stroke="#d4b986" stroke-width="3"/>
+  <path d="M244 476h16v34h-16Z" fill="#708b8b"/>
+  <path d="M210 618h276v11H210Z" fill="#d3c7ad"/>
+  <path d="M203 629h293v9H203Z" fill="#c3baa1"/>
+  <g fill="#426d6b"><path d="M125 620c-29-3-39-18-27-39-13-17-8-31 5-43-5-21 6-48 24-72 15 24 27 51 23 72 18 16 22 32 9 46 14 21-3 36-34 36Z"/><path d="M561 603c-26-2-34-16-24-34-11-15-6-28 5-38-4-18 5-42 21-64 14 22 24 46 20 64 16 14 20 28 8 41 13 18-2 31-30 31Z"/></g>
+  <g stroke="#587164" stroke-width="5"><path d="M126 543v93m437-99v82"/></g>
+  <g fill="#d4dbc1"><ellipse cx="63" cy="676" rx="20" ry="5"/><ellipse cx="200" cy="705" rx="17" ry="4"/><ellipse cx="530" cy="664" rx="25" ry="5"/></g>
+  <g stroke="#e5dfbd" stroke-width="2" stroke-linecap="round"><path d="m170 649-3-14m3 14 5-10m364 60 2-15m-2 15-5-9m97 39-3-17m3 17 5-11M85 733l2-17m-2 17-4-9"/></g>
+  <g stroke="#567a89" stroke-width="2" stroke-linecap="round"><path d="M136 223q9-8 18 0 9-8 18 0m24-37q6-6 12 0 6-6 12 0m347 74q8-7 16 0 8-7 16 0"/></g>
+  <path fill="url(#grain)" d="M0 0h720v800H0z"/>
+</svg>

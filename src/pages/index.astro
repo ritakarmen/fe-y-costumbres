@@ -1,75 +1,144 @@
----
+﻿---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import InquiryForms from '../components/InquiryForms.astro';
-import { news, traditions, contactEmail } from '../data/content';
-const base = '/fe-y-costumbres/';
+import HomeIcon from '../components/HomeIcon.astro';
+import { news, traditions } from '../data/content';
+import '../styles/home.css';
+
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+const topics = [
+  { name: 'Espiritualidad', detail: 'Un momento para ti', icon: 'sun', id: 'espiritualidad' },
+  { name: 'Fe y vida diaria', detail: 'Creer también es cuidar', icon: 'heart', id: 'fe-y-vida' },
+  { name: 'Diálogo y respeto', detail: 'Escuchar nos acerca', icon: 'dialogue', id: 'dialogo' },
+  { name: 'Familia y comunidad', detail: 'Lo que nos hace parte', icon: 'community', id: 'familia' },
+] as const;
+const featuredNews = news[0];
 ---
-<SiteLayout title="Fe y Raíces — Fe, cultura y comunidad" description="Noticias, espiritualidad, celebraciones y costumbres de Perú y del mundo, en un espacio de encuentro respetuoso.">
+<SiteLayout
+  title="Fe y Raíces — Historias que nos unen"
+  description="Descubre historias de fe, tradiciones del Perú y celebraciones que nos unen. Un espacio para inspirarnos, aprender y compartir en comunidad."
+  bodyClass="home-page"
+>
   <SiteHeader current="inicio" />
   <main id="contenido">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Un espacio para encontrarnos</div>
-          <h1>La fe que nos guía.<br /><em>Las raíces que nos unen.</em></h1>
-          <p class="hero-copy">Historias, noticias, costumbres y celebraciones que dan sentido a nuestra vida en comunidad. Un lugar para aprender, compartir y dialogar con respeto.</p>
-          <div class="hero-actions"><a class="button" href={`${base}actualidad/`}>Explorar actualidad <span aria-hidden="true">↗</span></a><a class="button secondary" href="#temas">Conocer los temas</a></div>
-          <div class="hero-note"><span class="tiny-avatars" aria-hidden="true"><span>✺</span><span>✝</span><span>☼</span></span><span>Tradiciones vivas, historias compartidas y caminos diversos.</span></div>
+    <section class="home-hero" aria-labelledby="hero-title">
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
+          <span class="home-eyebrow"><span class="home-status-dot" aria-hidden="true"></span> Un espacio para encontrarnos</span>
+          <h1 id="hero-title">La fe nos inspira.<br />Las raíces<br /><em>nos unen.</em></h1>
+          <p>Hay historias que se heredan y tradiciones que se sienten. Descubre la fe, la cultura y los pequeños rituales que nos acercan.</p>
+          <div class="home-actions">
+            <a class="home-button" href="#actualidad">Explorar historias <HomeIcon name="arrow" /></a>
+            <a class="home-button home-button-light" href={`${base}tradiciones/`}>Nuestras tradiciones</a>
+          </div>
+          <div class="home-origin"><span><HomeIcon name="globe" /></span><p><strong>De Perú al mundo</strong><br />Muchas formas de creer. Un lugar para compartir.</p></div>
         </div>
-        <div class="hero-art" role="img" aria-label="Ilustración abstracta de un sol y una cruz sobre un fondo azul celeste">
-          <div class="sun-disc"></div><div class="sun-cross" aria-hidden="true">✝</div>
-          <div class="hero-art-copy"><div><strong>Fe que ilumina</strong><span>Fe · Cultura · Comunidad</span></div><div class="hero-stamp">UN LUGAR<br />PARA TODOS</div></div>
+        <div class="home-hero-visual">
+          <div class="home-image-frame">
+            <img src={`${base}images/andes-chapel.svg`} width="720" height="800" fetchpriority="high" alt="Ilustración de una capilla entre montañas andinas, árboles y un camino que invita al encuentro." />
+            <span class="home-image-tag"><HomeIcon name="spark" /> Tradiciones vivas</span>
+            <span class="home-image-caption">MEMORIA, CULTURA Y PERTENENCIA</span>
+          </div>
+          <a class="home-floating-story" href={`${base}tradiciones/`}>
+            <span class="home-story-icon"><HomeIcon name="heart" /></span>
+            <span><small>LO QUE NOS CONECTA</small><strong>Lo nuestro merece<br />seguir contándose.</strong></span>
+            <span class="home-story-arrow"><HomeIcon name="arrow" /></span>
+          </a>
+          <span class="home-orbit" aria-hidden="true">✳</span>
         </div>
       </div>
+      <div class="container home-values" aria-label="Nuestros valores">
+        <span><HomeIcon name="spark" /> Cultura que perdura</span>
+        <span><HomeIcon name="heart" /> Fe que acompaña</span>
+        <span><HomeIcon name="community" /> Historias que acercan</span>
+        <a href="#temas">Encuentra tu inspiración <HomeIcon name="arrow" /></a>
+      </div>
     </section>
-    <div class="marquee"><div class="container marquee-inner"><span><b>✦</b> Espiritualidad cotidiana</span><span><b>✦</b> Tradiciones del Perú</span><span><b>✦</b> Diálogo y respeto</span><span><b>✦</b> Fiestas que nos reúnen</span></div></div>
 
-    <section class="section news-section" id="actualidad">
+    <section class="home-topics home-section" id="temas" aria-labelledby="topics-title">
       <div class="container">
-        <div class="section-heading"><div><div class="section-label">Lo que está pasando</div><h2>Actualidad con mirada humana</h2></div><div><p>Noticias y relatos recientes sobre fe, comunidad y tradiciones. Consulta siempre la fuente original para ampliar la información.</p><a class="text-link" href={`${base}actualidad/`} style="margin-top:12px">Ver todas las noticias <span aria-hidden="true">→</span></a></div></div>
-        <div class="news-grid">
-          {news.slice(0, 3).map((item) => <article class="news-card">
-            <div class="card-meta"><span>{item.date}</span><span class="category-pill">{item.tag}</span></div>
-            <h3>{item.title}</h3><p>{item.summary}</p>
-            <div class="card-bottom"><span class="source">Fuente: {item.source}</span><a class="read-arrow" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer en ${item.source}`}>↗</a></div>
-          </article>)}
+        <div class="home-section-top home-section-top-compact">
+          <div><span class="home-kicker">CADA CAMINO TIENE SU HISTORIA</span><h2 id="topics-title">¿Qué te inspira hoy?</h2></div>
+          <a class="home-text-link" href={`${base}temas/`}>Explorar todos los temas <HomeIcon name="arrow" /></a>
         </div>
-        <p class="update-line">Selección editorial actualizada el 12 de noviembre de 2026. Las noticias enlazan a sus publicaciones originales.</p>
+        <div class="home-topic-grid">
+          {topics.map((topic) => (
+            <a class="home-topic" href={`${base}temas/#${topic.id}`}>
+              <span class={`home-topic-icon home-topic-icon-${topic.icon}`}><HomeIcon name={topic.icon} /></span>
+              <div class="home-topic-copy"><h3>{topic.name}</h3><p>{topic.detail}</p></div>
+              <span class="home-topic-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
 
-    <section class="section" id="temas">
+    <section class="home-journal home-section" id="actualidad" aria-labelledby="journal-title">
       <div class="container">
-        <div class="section-heading"><div><div class="section-label">Ideas para explorar</div><h2>Temas que nos acompañan</h2></div><p>La fe puede vivirse en la oración, en la memoria, en el servicio y en las preguntas. Aquí hay espacio para distintos caminos.</p></div>
-        <div class="topics-grid">
-          <a class="topic-card" href={`${base}temas/#espiritualidad`}><span class="topic-symbol" aria-hidden="true">☼</span><span class="arrow" aria-hidden="true">↗</span><h3>Espiritualidad</h3><p>Prácticas, lecturas y momentos para cultivar interioridad y esperanza.</p></a>
-          <a class="topic-card" href={`${base}temas/#fe-y-vida`}><span class="topic-symbol" aria-hidden="true">♡</span><span class="arrow" aria-hidden="true">↗</span><h3>Fe y vida diaria</h3><p>Cómo la compasión, la gratitud y el cuidado se hacen acciones concretas.</p></a>
-          <a class="topic-card" href={`${base}temas/#dialogo`}><span class="topic-symbol" aria-hidden="true">◎</span><span class="arrow" aria-hidden="true">↗</span><h3>Diálogo y respeto</h3><p>Conocer distintas tradiciones religiosas y convivir desde la escucha.</p></a>
-          <a class="topic-card" href={`${base}temas/#familia`}><span class="topic-symbol" aria-hidden="true">✿</span><span class="arrow" aria-hidden="true">↗</span><h3>Familia y comunidad</h3><p>Rituales, recuerdos y celebraciones que pasan de una generación a otra.</p></a>
+        <div class="home-section-top">
+          <div><span class="home-kicker">UNA MIRADA A LO QUE NOS RODEA</span><h2 id="journal-title">Historias para <em>conectar.</em></h2><p>Fe, cultura y comunidad en las conversaciones de hoy.</p></div>
+          <a class="home-text-link" href={`${base}actualidad/`}>Toda la actualidad <HomeIcon name="arrow" /></a>
         </div>
-        <div style="margin-top:22px"><a class="text-link" href={`${base}temas/`}>Visitar el espacio de temas <span aria-hidden="true">→</span></a></div>
+        <div class="home-journal-grid">
+          <article class="home-featured-article">
+            <div class="home-featured-top"><span class="home-tag">{featuredNews.tag}</span><span>{featuredNews.date}</span></div>
+            <div class="home-featured-symbol" aria-hidden="true"><HomeIcon name="globe" /></div>
+            <div class="home-featured-content">
+              <span class="home-featured-label">EN PRIMER PLANO</span>
+              <h3><a href={featuredNews.url} target="_blank" rel="noopener noreferrer">{featuredNews.title}</a></h3>
+              <p>{featuredNews.summary}</p>
+              <div class="home-article-bottom"><span>Fuente: {featuredNews.source}</span><a href={featuredNews.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer ${featuredNews.title} en ${featuredNews.source} (nueva pestaña)`}><HomeIcon name="arrow" /></a></div>
+            </div>
+          </article>
+          <div class="home-article-list">
+            {news.slice(1, 3).map((item, index) => (
+              <article class="home-article">
+                <div class="home-article-meta"><span class="home-tag">{item.tag}</span><span>{item.date}</span><span class="home-article-number" aria-hidden="true">0{index + 2}</span></div>
+                <h3><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></h3>
+                <p>{item.summary}</p>
+                <div class="home-article-bottom"><span>{item.source}</span><a class="home-text-link" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer ${item.title} en ${item.source} (nueva pestaña)`}>Leer historia <HomeIcon name="arrow" /></a></div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <p class="home-editorial-note">Selección editorial · 12 de noviembre de 2026. Cada historia enlaza a su fuente original.</p>
       </div>
     </section>
 
-    <section class="section traditions-section" id="tradiciones">
+    <section class="home-traditions home-section" id="tradiciones" aria-labelledby="traditions-title">
       <div class="container">
-        <div class="section-heading"><div><div class="section-label">Calendarios, lugares y memorias</div><h2>Celebraciones que cuentan quiénes somos</h2></div><div><p>Las fiestas pueden unir devoción, música, comida, danza y memoria local. Cada tradición merece ser contada con su propia voz.</p><a class="text-link" href={`${base}tradiciones/`} style="margin-top:12px">Explorar tradiciones <span aria-hidden="true">→</span></a></div></div>
-        <div class="tradition-grid">
-          {traditions.map((item) => <article class="tradition-card">
-            <div class="tradition-art" aria-hidden="true">{item.symbol}</div>
-            <div class="tradition-season">{item.season}</div><h3>{item.title}</h3><p>{item.text}</p>
-            <a class="text-link" href={item.url} target="_blank" rel="noopener noreferrer">{item.label} <span aria-hidden="true">↗</span></a>
-          </article>)}
+        <div class="home-section-top">
+          <div><span class="home-kicker">NUESTRA CULTURA ESTÁ VIVA</span><h2 id="traditions-title">Raíces que <em>perduran.</em></h2><p>Celebraciones llenas de memoria, devoción y encuentro.</p></div>
+          <a class="home-text-link" href={`${base}tradiciones/`}>Todas las tradiciones <HomeIcon name="arrow" /></a>
         </div>
+        <div class="home-tradition-grid">
+          {traditions.map((item, index) => (
+            <article class={`home-tradition home-tradition-${item.tone}`}>
+              <div class="home-tradition-art" aria-hidden="true"><span class="home-tradition-index">0{index + 1}</span><span class="home-tradition-symbol">{item.symbol}</span><span class="home-tradition-type">TRADICIONES DEL PERÚ</span></div>
+              <div class="home-tradition-body">
+                <span class="home-tradition-season">{item.season}</span>
+                <h3><a href={item.url} target="_blank" rel="noopener noreferrer">{item.title}</a></h3>
+                <p>{item.text}</p>
+                <a class="home-text-link" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`Conocer ${item.title} (fuente externa, nueva pestaña)`}>Conocer la tradición <HomeIcon name="arrow" /></a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <a class="home-calendar-link" href={`${base}calendario/`}><span>Siempre hay algo que nos reúne.</span><strong>Descubre el calendario de celebraciones <HomeIcon name="arrow" /></strong></a>
       </div>
     </section>
 
-    <section class="quote-band" id="acerca"><div class="container"><div class="quote-mark" aria-hidden="true">“</div><p>La tradición se mantiene viva cuando se comparte con amor, se escucha con respeto y se transmite con sentido.</p><span>Fe y Raíces · Un espacio abierto al diálogo</span></div></section>
+    <section class="home-about" id="acerca" aria-labelledby="about-title">
+      <div class="container home-about-inner">
+        <div class="home-about-symbol" aria-hidden="true"><HomeIcon name="spark" /></div>
+        <div><span class="home-kicker">UN ESPACIO ABIERTO, UNA HISTORIA COMPARTIDA</span><h2 id="about-title">Las tradiciones viven<br />cuando las <em>compartimos.</em></h2><p>Una receta, una celebración, una forma de ver la vida. Tu historia también es parte de este lugar.</p></div>
+        <a class="home-button home-button-white" href="#consultas">Comparte tu historia <HomeIcon name="arrow" /></a>
+      </div>
+    </section>
 
     <InquiryForms />
-    <section class="section" style="padding-top:0"><div class="container"><p class="update-line">Tu mensaje se dirige a <a class="contact-email" href={`mailto:${contactEmail}`}>{contactEmail}</a>. No se publica nada sin revisión y autorización.</p></div></section>
   </main>
   <SiteFooter />
 </SiteLayout>
