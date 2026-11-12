@@ -3,7 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { news } from '../data/content';
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 <SiteLayout title="Actualidad — Fe y Raíces" description="Noticias recientes sobre fe, comunidad y tradiciones, con enlaces a las fuentes originales.">
   <SiteHeader current="actualidad" />
