@@ -34,7 +34,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   document.querySelectorAll("[data-cms-materials]").forEach(async (container) => {
     try {
-      const response = await fetch(endpoint, { headers: { apikey: publishableKey, Authorization: `Bearer ${publishableKey}` } });
+      const response = await fetch(endpoint, { headers: { apikey: publishableKey } });
       if (!response.ok) throw new Error("No se pudieron cargar los materiales.");
       const rows = await response.json();
       container.replaceChildren();
