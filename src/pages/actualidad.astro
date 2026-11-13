@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { news } from '../data/content';
+import CmsMaterials from '../components/CmsMaterials.astro';
 const base = '/fe-y-costumbres/';
 ---
 <SiteLayout title="Actualidad — Fe y Raíces" description="Noticias recientes sobre fe, comunidad y tradiciones, con enlaces a las fuentes originales.">
@@ -17,6 +18,7 @@ const base = '/fe-y-costumbres/';
           <div class="card-bottom"><span class="source">Fuente: {item.source}</span><a class="read-arrow" href={item.url} target="_blank" rel="noopener noreferrer" aria-label={`Leer en ${item.source}`}>↗</a></div>
         </article>)}
       </div>
+      <CmsMaterials title="Material publicado en Fe y Costumbres" limit={24} />
       <div class="feature-note"><b>Sobre esta sección:</b> las notas de esta primera selección están fechadas y no se actualizan automáticamente. Actualizaremos los enlaces al agregar nuevas noticias. Consulta siempre la fuente para confirmar información, horarios y cambios.</div>
       <div style="margin-top:25px"><a class="button" href={`${base}#consultas`}>Sugerir una noticia <span aria-hidden="true">↗</span></a></div>
     </div>
