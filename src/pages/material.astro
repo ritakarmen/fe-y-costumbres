@@ -37,7 +37,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
       status: "eq.Publicado",
       limit: "1"
     }).toString();
-    const response = await fetch(endpoint, { headers: { apikey: publishableKey, Authorization: `Bearer ${publishableKey}` } });
+    const response = await fetch(endpoint, { headers: { apikey: publishableKey } });
     if (!response.ok) throw new Error("No encontramos un material publicado con ese enlace.");
     const rows = await response.json();
     const item = rows[0];
