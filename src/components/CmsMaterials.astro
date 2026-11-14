@@ -1,0 +1,84 @@
+---
+const { title = "Material nuevo desde OrlandoLalito", limit = 6 } = Astro.props;
+const supabaseUrl = "https://dogtzxodoitvrtspbvfe.supabase.co";
+const publishableKey = "sb_publishable_u04ir3tohb4iwoLTN83qYQ_jV8_BKmS";
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+<section class="cms-materials home-section" aria-labelledby="cms-materials-title">
+  <div class="container">
+    <div class="home-section-top">
+      <div><span class="home-kicker">PUBLICADO DESDE TU CMS</span><h2 id="cms-materials-title">{title}</h2><p>Artículos, lecturas, noticias y otros materiales que compartes desde OrlandoLalito.</p></div>
+      <a class="home-text-link" href={`${base}/actualidad/`}>Ver actualidad <span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="cms-material-grid" data-cms-materials data-limit={limit}>
+      <p class="cms-material-state" role="status">Cargando materiales…</p>
+    </div>
+  </div>
+</section>
+<script is:inline define:vars={{ supabaseUrl, publishableKey, base }}>
+  const endpoint = new URL("/rest/v1/content_items", supabaseUrl);
+  endpoint.search = new URLSearchParams({
+    select: "id,title,slug,summary,type,image_url,updated_at,sites!inner(slug)",
+    "sites.slug": "eq.fe-y-costumbres",
+    status: "eq.Publicado",
+    order: "updated_at.desc",
+    limit: "24"
+  }).toString();
+
+  const make = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text) element.textContent = text;
+    return element;
+  };
+
+  document.querySelectorAll("[data-cms-materials]").forEach(async (container) => {
+    try {
+      const response = await fetch(endpoint, { headers: { apikey: publishableKey } });
+      if (!response.ok) throw new Error("No se pudieron cargar los materiales.");
+      const rows = await response.json();
+      container.replaceChildren();
+      const items = rows.slice(0, Number(container.dataset.limit || 6));
+      if (!items.length) {
+        container.append(make("p", "cms-material-state", "Aún no hay materiales publicados desde OrlandoLalito."));
+        return;
+      }
+      for (const item of items) {
+        const card = make("article", "cms-material-card");
+        if (item.image_url) {
+          const image = make("img", "cms-material-image");
+          image.src = item.image_url;
+          image.alt = item.title || "Imagen del material";
+          image.loading = "lazy";
+          card.append(image);
+        }
+        const content = make("div", "cms-material-copy");
+        content.append(make("span", "cms-material-type", item.type || "Material"));
+        const link = make("a", "cms-material-title", item.title || "Sin título");
+        link.href = `${base}/material/?slug=${encodeURIComponent(item.slug)}`;
+        content.append(link);
+        if (item.summary) content.append(make("p", "cms-material-summary", item.summary));
+        const date = item.updated_at ? new Intl.DateTimeFormat("es-PE", { dateStyle: "long" }).format(new Date(item.updated_at)) : "";
+        if (date) content.append(make("small", "cms-material-date", date));
+        card.append(content);
+        container.append(card);
+      }
+    } catch (error) {
+      container.replaceChildren(make("p", "cms-material-state", "Los materiales estarán disponibles cuando el sitio quede vinculado a OrlandoLalito."));
+      console.error("OrlandoLalito:", error);
+    }
+  });
+</script>
+<style is:global>
+  .cms-material-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .cms-material-card { overflow:hidden; display:flex; flex-direction:column; min-height:200px; border:1px solid var(--line); border-radius:18px; background:var(--white); box-shadow:var(--shadow); }
+  .cms-material-image { width:100%; height:170px; object-fit:cover; }
+  .cms-material-copy { display:flex; flex:1; flex-direction:column; align-items:flex-start; gap:10px; padding:20px; }
+  .cms-material-type { color:var(--primary-deep); font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .cms-material-title { color:var(--ink); font:600 21px/1.2 var(--serif); text-decoration:none; }
+  .cms-material-title:hover { color:var(--primary-deep); }
+  .cms-material-summary { color:var(--muted); font-size:12px; line-height:1.65; margin:0; }
+  .cms-material-date { margin-top:auto; color:var(--muted); font-size:10px; }
+  .cms-material-state { grid-column:1/-1; color:var(--muted); font-size:13px; }
+  @media (max-width:720px) { .cms-material-grid { grid-template-columns:1fr; } .cms-material-card { min-height:0; } }
+</style>

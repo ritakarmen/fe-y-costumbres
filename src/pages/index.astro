@@ -4,6 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import InquiryForms from '../components/InquiryForms.astro';
 import HomeIcon from '../components/HomeIcon.astro';
+import CmsMaterials from '../components/CmsMaterials.astro';
 import { news, traditions } from '../data/content';
 import '../styles/home.css';
 
@@ -137,6 +138,8 @@ const featuredNews = news[0];
         <a class="home-button home-button-white" href="#consultas">Comparte tu historia <HomeIcon name="arrow" /></a>
       </div>
     </section>
+
+    <CmsMaterials title="Nuevas historias para compartir" limit={3} />
 
     <InquiryForms />
   </main>
