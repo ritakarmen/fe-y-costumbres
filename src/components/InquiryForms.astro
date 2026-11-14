@@ -48,7 +48,7 @@ import { contactEmail } from '../data/content';
       if (!form.reportValidity()) return;
       const data = new FormData(form);
       const recipient = form.dataset.recipient || '';
-      const kind = form.dataset.kind === 'comentario' ? 'Comentario para revisión' : 'Consulta desde Fe y Raíces';
+      const kind = form.dataset.kind === 'comentario' ? 'Comentario para revisión' : 'Consulta desde Fe y Costumbres';
       const subject = `${kind} — ${String(data.get('topic') || 'Comunidad')}`;
       const body = [
         `Nombre: ${data.get('name')}`,

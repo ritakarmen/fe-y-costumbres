@@ -1,4 +1,4 @@
-# Fe y Raíces
+# Fe y Costumbres
 
 Revista web en español sobre fe, espiritualidad, noticias religiosas, costumbres y celebraciones. Construida con Astro y preparada para desplegarse en GitHub Pages.
 
